@@ -5,7 +5,6 @@ export default {
   state: {
     jobPage: [],
     jobList:[],
-    result:'',
   },
   reducers: {
     queryPageList(state, { payload }) {

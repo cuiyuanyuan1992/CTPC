@@ -3,7 +3,6 @@
 import { request } from 'umi';
 
 export async function queryPageJobs(options) {
-  console.log(JSON.stringify(options))
   return request('/api/tpJob/page',{
     method:'POST',
     data: options,

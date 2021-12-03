@@ -2,8 +2,6 @@ export default {
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
-  'menu.admin': '管理页',
-  'menu.admin.sub-page': '二级管理页',
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register-result': '注册结果',
@@ -51,4 +49,6 @@ export default {
   'menu.editor.koni': '拓扑编辑器',
 
   'menu.ctpc.job-list':'任务列表',
+  'menu.ctpc.runlist': '执行记录',
+  'menu.ctpc.runlist.itest': '用例执行',
 };

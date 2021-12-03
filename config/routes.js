@@ -31,17 +31,16 @@ export default [
     component: './JobList/JobPage',
   },
   {
-    path: '/admin',
-    name: 'admin',
+    path: '/runlist',
+    name: 'ctpc.runlist',
     icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
+    component: './JobBuildList/JobBuildPage',
     routes: [
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
+        path: '/runlist/itest',
+        name: 'itest',
         icon: 'smile',
-        component: './Welcome',
+        component: './JobBuildList/JobBuildPage',
       },
       {
         component: './404',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { LocaleProvider } from 'antd';
+import { history } from 'umi';
 import * as lodash from 'lodash';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { Table, Modal, Button,Tag,Form, Input,Radio } from 'antd';
@@ -17,7 +18,7 @@ import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import EditJob from "@/pages/JobList/components/EditJob";
 import {currentUser as queryCurrentUser} from "@/services/ant-design-pro/api";
 
-@connect( job => ({ job, loading }) => ({
+@connect(({ job, loading }) => ({
   jobPage:job.jobPage,
   loading: loading.models.list,
 }))
@@ -148,6 +149,7 @@ class JobPage extends Component {
         type: 'job/buildJob',
         payload: data
       })
+      history.push('/runlist/itest')
     } else if (e.key === "disable") {
       let data = {
         "jobName": this.state.selectedRecord.jobName,
@@ -215,7 +217,7 @@ class JobPage extends Component {
   queryDate = () => {
     let data = this.formRef.current.getFieldsValue();
     this.setState({
-      queryData: data,
+      queryData: JSON.stringify(data),
     })
     this.props.dispatch(
       {
@@ -231,7 +233,10 @@ class JobPage extends Component {
     }, () => {
       console.log(this.state.queryData)
 
-      let data = this.state.queryData;
+      let data = {};
+      if(this.state.queryData != null){
+        data = this.state.queryData;
+      };
       data.pageNum = this.state.current,
       data.pageSize= 10
       this.props.dispatch({ type: 'job/getJobPageList',payload:data});
@@ -279,7 +284,7 @@ class JobPage extends Component {
           <Table
             dataSource={jobPage.records}
             columns={this.columns}
-            scroll={{ y: '200px' }}
+            scroll={{ x: 'max-content' }}
             style={{tableLayout: 'fixed',marginTop: '15px'}}
             pagination={{ pageSize: 1 }}
             rowKey={record => record.id}
@@ -305,11 +310,4 @@ class JobPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { jobPageList } = state.job;
-  return {
-    jobPageList,
-  };
-}
-
-export default connect(mapStateToProps)(JobPage);
+export default JobPage;

@@ -55,3 +55,12 @@ npm test
 ## More
 
 You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+
+## 项目重点文件介绍
+* config/proxy.js 进行代理配置
+* config/route.js 路由配置
+* src/locales/ 进行本地化配置（中文只关注zh-CN/menu.js即可），与route.js配置对应
+* src/services 前端接口定义，与服务端接口对应（可加前缀便于代理处理）
+* src/models 数据处理层，将服务端请求到的数据进行处理和临时存储
+* src/pages 页面定义，使用models层进行请求和渲染
+
